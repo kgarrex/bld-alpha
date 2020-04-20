@@ -1,0 +1,87 @@
+{
+  "BasePath": "H:\\Dev\\code\\Environment",
+
+  "RootFolderSchema": {
+    "Dirs": [
+      {"Name": "projects"} 
+    ],
+    "Files": [
+      {"Name": "master.db", "Hidden":true, "CopyFrom":".\\templates\\master.db"} 
+    ]
+  },
+   
+
+  "ProjectTemplates": {
+    "CApp": {
+
+      "Dirs": [
+        {
+          "Name": "src",
+          "Hidden": false,
+          "Dirs":[
+            {
+              "Name": "Window"
+	    },
+            { "Name": "Helpfile"}
+	  ],
+          "Files":[
+            {"Name": "main.c", "CreateAlways": true}
+	  ]
+        },
+        {
+          "Name": "inc",
+          "Dirs":[],
+          "Files":[]
+        }
+      ],
+      "Files": [
+        {"Name": "config.json"},
+        {"Name": "README.md", "ReadOnly": false, "CopyFrom": ".\\templates\\README-template.md"},
+        {"Name": "LICENSE.md", "CopyFrom": ".\\templates\\Unlicense.md"},
+	{"Name": "project.db", "Hidden": true, "CopyFrom": ".\\templates\\project.db"}
+      ]
+    },
+
+    "AndroidPackage": {
+      "Dirs": [
+        {"Name": "META-INF"},
+        {"Name": "libs"},
+        {"Name": "res"},
+        {"Name": "assets"}
+      ],
+      "Files": [
+        {"Name": "AndroidManifest.xml"} 
+      ] 
+    },
+
+    "AndroidProject": {
+      "Dirs": [
+        { "Name": "build"},
+        { "Name": "libs"},
+	{
+          "Name": "src",
+          "Dirs":[
+            {"Name": "androidTest"},
+	    {"Name": "test"},
+            {
+              "Name": "main",
+              "Dirs": [
+                {"Name": "java"},
+                {"Name": "jni"},
+                {"Name": "gen"},
+                {"Name": "res"},
+                {"Name": "assets"}
+	      ],
+              "Files": [
+                {"Name": "AndroidManifest.xml", "CopyFrom": ""} 
+              ]
+	    }
+          ]
+        }
+      ],
+      "Files": [
+        {"Name": ".gitignore"}  
+      ]
+    }
+  }
+}

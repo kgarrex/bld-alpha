@@ -1,0 +1,60 @@
+{
+
+  "remote_repo": "https://github.com/kgarrex/DILLY",
+
+  "msvc_cl": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Tools\\MSVC\\14.16.27023\\bin\\Hostx86\\x86\\cl.exe",
+
+  "msvc_link": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Tools\\MSVC\\14.16.27023\\bin\\Hostx86\\x86\\link.exe",
+
+  "include_dirs":[
+     "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.17763.0\\ucrt",
+     "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.17763.0\\shared",
+     "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.17763.0\\um",
+     "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.17763.0\\winrt",
+     "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.17763.0\\km",
+     "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Tools\\MSVC\\14.16.27023\\include",
+     "H:\\Dev\\code\\phnt"
+  ],
+
+  "include_files":[
+    "H:\\Dev\\code\\lib-dilly\\json.h"
+  ],
+
+  "lib_dirs":[
+     "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.17763.0\\um\\x86",
+     "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.17763.0\\ucrt\\x86", 
+     "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Tools\\MSVC\\14.16.27023\\lib\\x86"
+  ],
+
+  "macros": [ 
+     { "name": "MACRO", "value": "1" },
+     { "name": "MY_DEFINE", "value": "65536" }
+  ],
+
+  "source_dirs": [
+     "H:\\Dev\\code\\Environment\\projects\\Kendrick\\src"
+  ],
+
+  "source_files": [
+     ".\\src\\main.c"
+  ],
+
+  "source_ext": [".c", ".cpp"],
+
+  "object_dirs": [
+     "H:\\Dev\\code\\Environment\\projects\\Kendrick\\src\\obj"
+  ],
+
+  "stack_size": "65536",
+
+  "object_name": "my_test",
+
+  "source_file": ".\\test.c",
+
+  "aapt": "C:\\Users\\GAR1\\Downloads\\build-tools_r29.0.2-windows\\android-10\\aapt.exe",
+
+  "javac": "C:\\Users\\GAR1\\Downloads\\jdk-12.0.2_windows-x64_bin\\jdk-12.0.2\\bin\\javac.exe",
+
+  "zipalign": "C:\\Users\\GAR1\\Downloads\\build-tools_r29.0.2-windows\\android-10\\zipalign.exe"
+
+}

@@ -1,0 +1,38 @@
+{
+  "Windows",
+  "Android-Build-Tools": [
+    {
+      "url": "https://dl.google.com/android/repository/build-tools_r29.0.2-windows.zip",
+      "size": 38.3
+    },
+
+    {
+      "url": "https://dl.google.com/android/repository/build-tools_r29.0.1-windows.zip",
+      "size": 38.3
+    },
+
+    {
+      "url": "https://dl.google.com/android/repository/build-tools_r29-windows.zip",
+      "size": 54.45
+    },
+
+    {
+      "url": "https://dl.google.com/android/repository/build-tools_r29-rc3-windows.zip",
+      "size": 54.45
+    },
+
+    {
+      "url": "https://dl.google.com/android/repository/build-tools_r29-rc2-windows.zip",
+      "size": 54.36
+    }
+  ],
+  
+  "Android-Platform-Tools": [
+    {
+      "url": "https://dl.google.com/android/repository/platform-tools_r29.0.2-windows.zip",
+      "size": 11.18
+    }
+  ],
+
+  "cURL-source": "https://github.com/curl/curl" 
+}
