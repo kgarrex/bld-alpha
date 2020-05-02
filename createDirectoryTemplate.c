@@ -59,12 +59,20 @@ struct DirStackObject
   char * dirPathEnd;
 };
 
-char keys[] = {
-  "Name"
- ,"Hidden"
- ,"CopyFrom"
- ,"Files"
- ,"Dirs"
+enum KeyName {
+  KeyName_Name,
+  KeyName_Hidden,
+  KeyName_CopyFrom,
+  KeyName_Files,
+  KeyName_Dirs
+};
+
+char Key[] = {
+  ".Name"
+ ,".Hidden"
+ ,".CopyFrom"
+ ,".Files"
+ ,".Dirs"
 };
 
 void createFile
@@ -78,7 +86,7 @@ void createFile
   int length;
   DWORD attr = 0;
  
-  memcpy(jsonRightBracket, ".Name", 5+1);
+  memcpy(jsonRightBracket, Key[KeyName_Name], 5+1);
   result = json_query_get_string(pobj, jsonPath, strBuf, strBufSize, &length);
   if(result != JSON_SUCCESS) return;
 
@@ -87,13 +95,13 @@ void createFile
   }
   memcpy(*dirPathEnd+1, strBuf, length+1); 
     
-  memcpy(jsonRightBracket, ".Hidden", 7+1);
+  memcpy(jsonRightBracket, Key[KeyName_Hidden], 7+1);
   result = json_query_get_boolean(pobj, jsonPath, &hidden);
   if(result == JSON_SUCCESS){
     if(hidden) attr |= FILE_ATTRIBUTE_HIDDEN; 
   }
 
-  memcpy(jsonRightBracket, ".CopyFrom", 9+1);
+  memcpy(jsonRightBracket, Key[KeyName_CopyFrom], 9+1);
   result = json_query_get_string(pobj, jsonPath, strBuf, strBufSize, 0);
   if(result != JSON_SUCCESS){
     if(!attr) attr = FILE_ATTRIBUTE_NORMAL;
@@ -114,7 +122,7 @@ void createDirectory
   int strBufSize = 32;
   int length;
 
-  memcpy(jsonRightBracket, ".Name", 5+1);
+  memcpy(jsonRightBracket, Key[KeyName_Name], 5+1);
   result = json_query_get_string(pobj, jsonPath, strBuf, strBufSize, &length);
   if(result != JSON_SUCCESS) return;
 
@@ -166,7 +174,7 @@ int createDirectoryTemplate
 CREATE_FILES:
   dirStack[dirStackIdx].dirPathEnd = dirPathEnd;
 
-  memcpy(dirStack[dirStackIdx].jsonPathEnd, ".Files", 6+1); //append null char
+  memcpy(dirStack[dirStackIdx].jsonPathEnd, Key[KeyName_Files], 6+1); //append null char
   jsonLeftBracket = &((dirStack[dirStackIdx].jsonPathEnd)[6]);
   result = json_query_get_array_count(pobj, jsonPath, &fileCount);
   if(result != JSON_SUCCESS){
@@ -191,7 +199,7 @@ CREATE_FILES:
     }
   }
 
-  memcpy(dirStack[dirStackIdx].jsonPathEnd, ".Dirs", 5+1); //append null char 
+  memcpy(dirStack[dirStackIdx].jsonPathEnd, Key[KeyName_Dirs], 5+1); //append null char 
   dirStack[dirStackIdx].jsonLeftBracket = &dirStack[dirStackIdx].jsonPathEnd[5];
   result = json_query_get_array_count(pobj, jsonPath, &dirStack[dirStackIdx].dirObjectCount);
   if(result != JSON_SUCCESS){
