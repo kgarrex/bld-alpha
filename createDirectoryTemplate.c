@@ -1,3 +1,10 @@
+// hidden
+// readonly
+struct file_info {
+	char *utf8_name;	
+	char *copy_from;
+    char flags;	
+}; 
 
 int __cdecl itoa_zt (int n, char* buf,
 unsigned char bufsize, unsigned char padding,
