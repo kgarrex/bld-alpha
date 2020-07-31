@@ -35,4 +35,6 @@
   ],
 
   "cURL-source": "https://github.com/curl/curl" 
+
+  "doxygen-windows-1.8.18-setup": "http://doxygen.nl/files/doxygen-1.8.18-setup.exe"
 }
