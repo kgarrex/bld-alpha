@@ -51,7 +51,7 @@ int GetEachIncludeDir(struct json_object *pobj, ICOMPILER *compiler)
     {
         sprintf(querybuf, "$." INCLUDE_DIRS "[%d]", i);
 	rslt = json_query_get_string(pobj, querybuf, dirbuf, 256, &dirsize); 
-	if(rslt != JSON_SUCCESS){
+	if(rslt != 0){
             printf("Could not get string from json\n");	
             return 0;
         }
@@ -72,7 +72,7 @@ int GetEachIncludeFile(struct json_object *pobj, ICOMPILER *compiler)
     {
         sprintf(querybuf, "$." INCLUDE_FILES "[%d]", i);	    
         rslt = json_query_get_string(pobj, querybuf, dirbuf, 256, &dirsize);
-	if(rslt != JSON_SUCCESS) {}
+	if(rslt != 0) {}
 	Compiler_AddIncludeFile(compiler, dirbuf, dirsize);
     }
     return 1;
@@ -91,11 +91,11 @@ int GetEachMacro(struct json_object *pobj, ICOMPILER *compiler)
     {
         sprintf(querybuf, "$." MACROS "[%d].name", i);
         rslt = json_query_get_string(pobj, querybuf, name, 64, &namelen);
-        if(rslt != JSON_SUCCESS) {}
+        if(rslt != 0) {}
 
         sprintf(querybuf, "$." MACROS "[%d].value", i);
 	rslt = json_query_get_string(pobj, querybuf, value, 256, &valuelen);
-	if(rslt != JSON_SUCCESS) {}
+	if(rslt != 0) {}
 
         Compiler_DefineMacro(compiler, name, namelen, value, valuelen);
     }
@@ -124,7 +124,7 @@ int GetEachLibDir(struct json_object *pobj, ILinker *linker)
     {
         sprintf(querybuf, "$." LIB_DIRS "[%d]", i); 
         rslt = json_query_get_string(pobj, querybuf, dirbuf, 256, &dirsize);
-	if(rslt != JSON_SUCCESS) {}
+	if(rslt != 0) {}
         Linker_AddLibDir(linker, dirbuf, dirsize);
     }
     return 1;
@@ -142,7 +142,7 @@ int GetEachObjDir(struct json_object *pobj, ILinker *linker)
     {
         sprintf(querybuf, "$." OBJECT_DIRS "[%d]", i);
         rslt = json_query_get_string(pobj, querybuf, dirbuf, 256, &dirsize);
-	if(rslt != JSON_SUCCESS){
+	if(rslt != 0){
             printf("Error: Could not get object directory\n");
             return 0;
         }

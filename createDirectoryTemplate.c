@@ -74,7 +74,7 @@ enum KeyName {
 	KeyName_Dirs
 };
 
-char Key[] = {
+char *Key[] = {
 	".Name",
 	".Hidden",
 	".CopyFrom",
@@ -95,7 +95,7 @@ void createFile
  
 	memcpy(jsonRightBracket, Key[KeyName_Name], 5+1);
 	result = json_query_get_string(pobj, jsonPath, strBuf, strBufSize, &length);
-	if(result != JSON_SUCCESS) return;
+	if(result != 0) return;
 
 	if(**dirPathEnd != '\\') {
 		memcpy(*dirPathEnd, "\\", 2); 
@@ -104,13 +104,13 @@ void createFile
 		
 	memcpy(jsonRightBracket, Key[KeyName_Hidden], 7+1);
 	result = json_query_get_boolean(pobj, jsonPath, &hidden);
-	if(result == JSON_SUCCESS){
+	if(result == 0){
 		if(hidden) attr |= FILE_ATTRIBUTE_HIDDEN; 
 	}
 
 	memcpy(jsonRightBracket, Key[KeyName_CopyFrom], 9+1);
 	result = json_query_get_string(pobj, jsonPath, strBuf, strBufSize, 0);
-	if(result != JSON_SUCCESS){
+	if(result != 0){
 		if(!attr) attr = FILE_ATTRIBUTE_NORMAL;
 		CreateFile(dirPath, GENERIC_READ|GENERIC_WRITE, 0, 0, CREATE_NEW, attr, 0);
 	}
@@ -131,7 +131,7 @@ void createDirectory
 
 	memcpy(jsonRightBracket, Key[KeyName_Name], 5+1);
 	result = json_query_get_string(pobj, jsonPath, strBuf, strBufSize, &length);
-	if(result != JSON_SUCCESS) return;
+	if(result != 0) return;
 
 	if(**dirPathEnd != '\\') {
 		memcpy(*dirPathEnd, "\\", 2);
@@ -167,7 +167,7 @@ int createDirectoryTemplate
 	int dirStackIdx = 0; 
 
 	result = json_query_path_exists(pobj, jsonRoot);
-	if(result != JSON_SUCCESS) return 0;
+	if(result != 0) return 0;
 
 	len = strlen(dirRoot);
 	memcpy(dirPath, dirRoot, len);
@@ -184,7 +184,7 @@ CREATE_FILES:
 	memcpy(dirStack[dirStackIdx].jsonPathEnd, Key[KeyName_Files], 6+1); //append null char
 	jsonLeftBracket = &((dirStack[dirStackIdx].jsonPathEnd)[6]);
 	result = json_query_get_array_count(pobj, jsonPath, &fileCount);
-	if(result != JSON_SUCCESS){
+	if(result != 0){
 		if(result != JSON_ERROR_KEY_UNDEFINED){
 			printf("Error: Key 'Files' undefined\n");
 			return 0;			
@@ -197,7 +197,7 @@ CREATE_FILES:
 		len = itoa_zt(i, idxBuf, 4, 0, 10);
 		len = sprintf(jsonLeftBracket, "[%s]", idxBuf);
 		result = json_query_path_exists(pobj, jsonPath);
-		if(result == JSON_SUCCESS){
+		if(result == 0){
 			jsonRightBracket = &jsonLeftBracket[len];
 
 			//create file on disk
@@ -209,7 +209,7 @@ CREATE_FILES:
 	memcpy(dirStack[dirStackIdx].jsonPathEnd, Key[KeyName_Dirs], 5+1); //append null char 
 	dirStack[dirStackIdx].jsonLeftBracket = &dirStack[dirStackIdx].jsonPathEnd[5];
 	result = json_query_get_array_count(pobj, jsonPath, &dirStack[dirStackIdx].dirObjectCount);
-	if(result != JSON_SUCCESS){
+	if(result != 0){
 		if(result != JSON_ERROR_KEY_UNDEFINED){
 			printf("Error: Key 'Dirs' undefined\n");
 			return 0;			
