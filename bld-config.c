@@ -33,7 +33,11 @@ HANDLE bldconfig_open_project_config(void *j)
 	return hfile;
 }
 
+/*
 void bldconfig_open_system_config()
+{
+}
+*/
 
 
 void bldconfig_read_srcfiles(void *obj, char *array[], int count)
